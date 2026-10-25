@@ -1,0 +1,393 @@
+{
+  "summary": [
+    {
+      "Target": "insecure-lab",
+      "Score": 2,
+      "Grade": "F",
+      "High": 2,
+      "Medium": 3,
+      "Low": 7,
+      "Passed": 1
+    },
+    {
+      "Target": "partial-lab",
+      "Score": 74,
+      "Grade": "C",
+      "High": 0,
+      "Medium": 1,
+      "Low": 4,
+      "Passed": 8
+    },
+    {
+      "Target": "hardened-lab",
+      "Score": 100,
+      "Grade": "A",
+      "High": 0,
+      "Medium": 0,
+      "Low": 0,
+      "Passed": 13
+    }
+  ],
+  "findings": [
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "HSTS",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost; HSTS only applies to HTTPS.",
+      "fix": ""
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "Content-Security-Policy",
+      "severity": "Medium",
+      "detail": "No CSP header; the browser will run any injected script.",
+      "fix": "Define a CSP such as default-src 'self'."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "Clickjacking protection",
+      "severity": "Medium",
+      "detail": "Neither X-Frame-Options nor CSP frame-ancestors is set.",
+      "fix": "Add X-Frame-Options: DENY or CSP frame-ancestors 'none'."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "X-Content-Type-Options",
+      "severity": "Low",
+      "detail": "X-Content-Type-Options header is missing or has an unexpected value.",
+      "fix": "Add X-Content-Type-Options: nosniff"
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "Referrer-Policy",
+      "severity": "Low",
+      "detail": "Referrer-Policy header is missing or has an unexpected value.",
+      "fix": "Add Referrer-Policy: strict-origin-when-cross-origin"
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Headers",
+      "check": "Permissions-Policy",
+      "severity": "Low",
+      "detail": "Permissions-Policy header is missing or has an unexpected value.",
+      "fix": "Add a Permissions-Policy that disables unused features."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Info leak",
+      "check": "Server version",
+      "severity": "Low",
+      "detail": "Server header reveals version: Apache/2.2.15 (CentOS)",
+      "fix": "Hide version details (for example server_tokens off)."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Info leak",
+      "check": "X-Powered-By",
+      "severity": "Low",
+      "detail": "X-Powered-By reveals technology: PHP/5.3.3",
+      "fix": "Remove the X-Powered-By header."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Cookies",
+      "check": "Cookie HttpOnly",
+      "severity": "Medium",
+      "detail": "Cookie PHPSESSID can be read by JavaScript.",
+      "fix": "Add the HttpOnly flag."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Cookies",
+      "check": "Cookie SameSite",
+      "severity": "Low",
+      "detail": "Cookie PHPSESSID has no SameSite attribute.",
+      "fix": "Add SameSite=Lax or Strict."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "Cookies",
+      "check": "Cookie Secure",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost.",
+      "fix": ""
+    },
+    {
+      "target": "insecure-lab",
+      "category": "CORS",
+      "check": "Reflected origin",
+      "severity": "High",
+      "detail": "Server echoes any Origin back and allows credentials; any website can read responses.",
+      "fix": "Allow only a fixed list of trusted origins."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "CORS",
+      "check": "Wildcard origin",
+      "severity": "Pass",
+      "detail": "no wildcard",
+      "fix": ""
+    },
+    {
+      "target": "insecure-lab",
+      "category": "CORS",
+      "check": "Null origin",
+      "severity": "High",
+      "detail": "The 'null' origin is trusted (sandboxed iframes and local files can use it).",
+      "fix": "Never allow the null origin."
+    },
+    {
+      "target": "insecure-lab",
+      "category": "CORS",
+      "check": "Preflight methods",
+      "severity": "Low",
+      "detail": "Untrusted origins may use risky methods: GET, POST, PUT, DELETE",
+      "fix": "Limit Access-Control-Allow-Methods to what the API needs."
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "HSTS",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost; HSTS only applies to HTTPS.",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "Content-Security-Policy",
+      "severity": "Medium",
+      "detail": "No CSP header; the browser will run any injected script.",
+      "fix": "Define a CSP such as default-src 'self'."
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "Clickjacking protection",
+      "severity": "Pass",
+      "detail": "SAMEORIGIN",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "X-Content-Type-Options",
+      "severity": "Pass",
+      "detail": "nosniff",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "Referrer-Policy",
+      "severity": "Low",
+      "detail": "Referrer-Policy header is missing or has an unexpected value.",
+      "fix": "Add Referrer-Policy: strict-origin-when-cross-origin"
+    },
+    {
+      "target": "partial-lab",
+      "category": "Headers",
+      "check": "Permissions-Policy",
+      "severity": "Low",
+      "detail": "Permissions-Policy header is missing or has an unexpected value.",
+      "fix": "Add a Permissions-Policy that disables unused features."
+    },
+    {
+      "target": "partial-lab",
+      "category": "Info leak",
+      "check": "Server version",
+      "severity": "Pass",
+      "detail": "nginx",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Info leak",
+      "check": "X-Powered-By",
+      "severity": "Pass",
+      "detail": "header not present",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Cookies",
+      "check": "Cookie HttpOnly",
+      "severity": "Pass",
+      "detail": "session has HttpOnly",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "Cookies",
+      "check": "Cookie SameSite",
+      "severity": "Low",
+      "detail": "Cookie session has no SameSite attribute.",
+      "fix": "Add SameSite=Lax or Strict."
+    },
+    {
+      "target": "partial-lab",
+      "category": "Cookies",
+      "check": "Cookie Secure",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost.",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "CORS",
+      "check": "Reflected origin",
+      "severity": "Pass",
+      "detail": "Origin is not reflected (wildcard checked below).",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "CORS",
+      "check": "Wildcard origin",
+      "severity": "Low",
+      "detail": "Access-Control-Allow-Origin is * so every site can read this response.",
+      "fix": "Replace * with specific trusted origins unless the content is fully public."
+    },
+    {
+      "target": "partial-lab",
+      "category": "CORS",
+      "check": "Null origin",
+      "severity": "Pass",
+      "detail": "null origin not trusted",
+      "fix": ""
+    },
+    {
+      "target": "partial-lab",
+      "category": "CORS",
+      "check": "Preflight methods",
+      "severity": "Pass",
+      "detail": "no risky methods allowed to untrusted origins",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "HSTS",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost; HSTS only applies to HTTPS.",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "Content-Security-Policy",
+      "severity": "Pass",
+      "detail": "default-src 'self'; frame-ancestors 'none'; object-src 'none'",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "Clickjacking protection",
+      "severity": "Pass",
+      "detail": "DENY",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "X-Content-Type-Options",
+      "severity": "Pass",
+      "detail": "nosniff",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "Referrer-Policy",
+      "severity": "Pass",
+      "detail": "strict-origin-when-cross-origin",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Headers",
+      "check": "Permissions-Policy",
+      "severity": "Pass",
+      "detail": "geolocation=(), camera=(), microphone=()",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Info leak",
+      "check": "Server version",
+      "severity": "Pass",
+      "detail": "webserver",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Info leak",
+      "check": "X-Powered-By",
+      "severity": "Pass",
+      "detail": "header not present",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Cookies",
+      "check": "Cookie HttpOnly",
+      "severity": "Pass",
+      "detail": "session has HttpOnly",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Cookies",
+      "check": "Cookie SameSite",
+      "severity": "Pass",
+      "detail": "session has SameSite",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "Cookies",
+      "check": "Cookie Secure",
+      "severity": "N/A",
+      "detail": "Plain HTTP on localhost.",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "CORS",
+      "check": "Reflected origin",
+      "severity": "Pass",
+      "detail": "Untrusted origin was not allowed.",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "CORS",
+      "check": "Wildcard origin",
+      "severity": "Pass",
+      "detail": "no wildcard",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "CORS",
+      "check": "Null origin",
+      "severity": "Pass",
+      "detail": "null origin not trusted",
+      "fix": ""
+    },
+    {
+      "target": "hardened-lab",
+      "category": "CORS",
+      "check": "Preflight methods",
+      "severity": "Pass",
+      "detail": "no risky methods allowed to untrusted origins",
+      "fix": ""
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+target,category,check,severity,detail,fix
+insecure-lab,Headers,HSTS,N/A,Plain HTTP on localhost; HSTS only applies to HTTPS.,
+insecure-lab,Headers,Content-Security-Policy,Medium,No CSP header; the browser will run any injected script.,Define a CSP such as default-src 'self'.
+insecure-lab,Headers,Clickjacking protection,Medium,Neither X-Frame-Options nor CSP frame-ancestors is set.,Add X-Frame-Options: DENY or CSP frame-ancestors 'none'.
+insecure-lab,Headers,X-Content-Type-Options,Low,X-Content-Type-Options header is missing or has an unexpected value.,Add X-Content-Type-Options: nosniff
+insecure-lab,Headers,Referrer-Policy,Low,Referrer-Policy header is missing or has an unexpected value.,Add Referrer-Policy: strict-origin-when-cross-origin
+insecure-lab,Headers,Permissions-Policy,Low,Permissions-Policy header is missing or has an unexpected value.,Add a Permissions-Policy that disables unused features.
+insecure-lab,Info leak,Server version,Low,Server header reveals version: Apache/2.2.15 (CentOS),Hide version details (for example server_tokens off).
+insecure-lab,Info leak,X-Powered-By,Low,X-Powered-By reveals technology: PHP/5.3.3,Remove the X-Powered-By header.
+insecure-lab,Cookies,Cookie HttpOnly,Medium,Cookie PHPSESSID can be read by JavaScript.,Add the HttpOnly flag.
+insecure-lab,Cookies,Cookie SameSite,Low,Cookie PHPSESSID has no SameSite attribute.,Add SameSite=Lax or Strict.
+insecure-lab,Cookies,Cookie Secure,N/A,Plain HTTP on localhost.,
+insecure-lab,CORS,Reflected origin,High,Server echoes any Origin back and allows credentials; any website can read responses.,Allow only a fixed list of trusted origins.
+insecure-lab,CORS,Wildcard origin,Pass,no wildcard,
+insecure-lab,CORS,Null origin,High,The 'null' origin is trusted (sandboxed iframes and local files can use it).,Never allow the null origin.
+insecure-lab,CORS,Preflight methods,Low,"Untrusted origins may use risky methods: GET, POST, PUT, DELETE",Limit Access-Control-Allow-Methods to what the API needs.
+partial-lab,Headers,HSTS,N/A,Plain HTTP on localhost; HSTS only applies to HTTPS.,
+partial-lab,Headers,Content-Security-Policy,Medium,No CSP header; the browser will run any injected script.,Define a CSP such as default-src 'self'.
+partial-lab,Headers,Clickjacking protection,Pass,SAMEORIGIN,
+partial-lab,Headers,X-Content-Type-Options,Pass,nosniff,
+partial-lab,Headers,Referrer-Policy,Low,Referrer-Policy header is missing or has an unexpected value.,Add Referrer-Policy: strict-origin-when-cross-origin
+partial-lab,Headers,Permissions-Policy,Low,Permissions-Policy header is missing or has an unexpected value.,Add a Permissions-Policy that disables unused features.
+partial-lab,Info leak,Server version,Pass,nginx,
+partial-lab,Info leak,X-Powered-By,Pass,header not present,
+partial-lab,Cookies,Cookie HttpOnly,Pass,session has HttpOnly,
+partial-lab,Cookies,Cookie SameSite,Low,Cookie session has no SameSite attribute.,Add SameSite=Lax or Strict.
+partial-lab,Cookies,Cookie Secure,N/A,Plain HTTP on localhost.,
+partial-lab,CORS,Reflected origin,Pass,Origin is not reflected (wildcard checked below).,
+partial-lab,CORS,Wildcard origin,Low,Access-Control-Allow-Origin is * so every site can read this response.,Replace * with specific trusted origins unless the content is fully public.
+partial-lab,CORS,Null origin,Pass,null origin not trusted,
+partial-lab,CORS,Preflight methods,Pass,no risky methods allowed to untrusted origins,
+hardened-lab,Headers,HSTS,N/A,Plain HTTP on localhost; HSTS only applies to HTTPS.,
+hardened-lab,Headers,Content-Security-Policy,Pass,default-src 'self'; frame-ancestors 'none'; object-src 'none',
+hardened-lab,Headers,Clickjacking protection,Pass,DENY,
+hardened-lab,Headers,X-Content-Type-Options,Pass,nosniff,
+hardened-lab,Headers,Referrer-Policy,Pass,strict-origin-when-cross-origin,
+hardened-lab,Headers,Permissions-Policy,Pass,"geolocation=(), camera=(), microphone=()",
+hardened-lab,Info leak,Server version,Pass,webserver,
+hardened-lab,Info leak,X-Powered-By,Pass,header not present,
+hardened-lab,Cookies,Cookie HttpOnly,Pass,session has HttpOnly,
+hardened-lab,Cookies,Cookie SameSite,Pass,session has SameSite,
+hardened-lab,Cookies,Cookie Secure,N/A,Plain HTTP on localhost.,
+hardened-lab,CORS,Reflected origin,Pass,Untrusted origin was not allowed.,
+hardened-lab,CORS,Wildcard origin,Pass,no wildcard,
+hardened-lab,CORS,Null origin,Pass,null origin not trusted,
+hardened-lab,CORS,Preflight methods,Pass,no risky methods allowed to untrusted origins,
